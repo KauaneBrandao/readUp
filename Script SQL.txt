@@ -1,0 +1,161 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Tempo de geração: 06-Maio-2025 às 19:46
+-- Versão do servidor: 10.4.32-MariaDB
+-- versão do PHP: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Banco de dados: `dbreadup`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tb_curte`
+--
+
+CREATE TABLE `tb_curte` (
+  `id_Curte` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `data` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tb_generoliv`
+--
+
+CREATE TABLE `tb_generoliv` (
+  `id_GeneroLiv` int(11) NOT NULL,
+  `nome_GeneroLiv` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tb_livro`
+--
+
+CREATE TABLE `tb_livro` (
+  `id_Livro` int(11) NOT NULL,
+  `nome_Livro` varchar(200) NOT NULL,
+  `autor_Livro` varchar(200) NOT NULL,
+  `dsec_Livro` varchar(200) NOT NULL,
+  `id_GeneroLiv` int(11) NOT NULL,
+  `status` varchar(200) NOT NULL,
+  `dataCriacao_Livro` date NOT NULL,
+  `curtida` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tb_usuario`
+--
+
+CREATE TABLE `tb_usuario` (
+  `id_Usuario` int(11) NOT NULL,
+  `login_Usuario` varchar(200) NOT NULL,
+  `senha_Usuario` varchar(200) NOT NULL,
+  `nome_Usuario` varchar(200) NOT NULL,
+  `telefone_Usuario` varchar(18) NOT NULL,
+  `email_Usuario` varchar(200) NOT NULL,
+  `privilegio_Usuario` enum('Admin','User') NOT NULL,
+  `idade_Usuario` int(2) NOT NULL,
+  `id_Curte` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices para tabela `tb_curte`
+--
+ALTER TABLE `tb_curte`
+  ADD PRIMARY KEY (`id_Curte`);
+
+--
+-- Índices para tabela `tb_generoliv`
+--
+ALTER TABLE `tb_generoliv`
+  ADD PRIMARY KEY (`id_GeneroLiv`);
+
+--
+-- Índices para tabela `tb_livro`
+--
+ALTER TABLE `tb_livro`
+  ADD PRIMARY KEY (`id_Livro`),
+  ADD KEY `id_GeneroLiv` (`id_GeneroLiv`),
+  ADD KEY `curtida` (`curtida`);
+
+--
+-- Índices para tabela `tb_usuario`
+--
+ALTER TABLE `tb_usuario`
+  ADD PRIMARY KEY (`id_Usuario`),
+  ADD KEY `id_Curte` (`id_Curte`);
+
+--
+-- AUTO_INCREMENT de tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `tb_curte`
+--
+ALTER TABLE `tb_curte`
+  MODIFY `id_Curte` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `tb_generoliv`
+--
+ALTER TABLE `tb_generoliv`
+  MODIFY `id_GeneroLiv` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `tb_livro`
+--
+ALTER TABLE `tb_livro`
+  MODIFY `id_Livro` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `tb_usuario`
+--
+ALTER TABLE `tb_usuario`
+  MODIFY `id_Usuario` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restrições para despejos de tabelas
+--
+
+--
+-- Limitadores para a tabela `tb_livro`
+--
+ALTER TABLE `tb_livro`
+  ADD CONSTRAINT `tb_livro_ibfk_1` FOREIGN KEY (`id_GeneroLiv`) REFERENCES `tb_generoliv` (`id_GeneroLiv`),
+  ADD CONSTRAINT `tb_livro_ibfk_2` FOREIGN KEY (`curtida`) REFERENCES `tb_curte` (`id_Curte`);
+
+--
+-- Limitadores para a tabela `tb_usuario`
+--
+ALTER TABLE `tb_usuario`
+  ADD CONSTRAINT `tb_usuario_ibfk_1` FOREIGN KEY (`id_Curte`) REFERENCES `tb_curte` (`id_Curte`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
