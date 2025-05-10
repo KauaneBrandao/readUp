@@ -1,0 +1,127 @@
+package DAO;
+
+import Connection.ConnectionFactory;
+import Model.Livro;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class LivroDAO {
+
+    private final Connection conexao;
+
+    public LivroDAO() {
+        ConnectionFactory factory = new ConnectionFactory();
+        this.conexao = factory.obtemConexao();
+    }
+
+    public void inserirLivro(Livro livro) {
+        String sql = "INSERT INTO tb_livro (nome_Livro, autor_Livro, dsec_Livro, id_GeneroLiv, status, dataCriacao_Livro, curtida) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            stmt.setString(1, livro.getNomeLivro());
+            stmt.setString(2, livro.getAutorLivro());
+            stmt.setString(3, livro.getDsecLivro());
+            stmt.setInt(4, livro.getIdGeneroLiv());
+            stmt.setString(5, livro.getStatus());
+            stmt.setDate(6, new java.sql.Date(livro.getDataCriacaoLivro().getTime()));
+            stmt.setInt(7, livro.getCurtida());
+            stmt.executeUpdate();
+            System.out.println("Livro cadastrado com sucesso!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Livro buscarLivroPorID(int id) {
+        Livro livro = null;
+        String sql = "SELECT * FROM tb_livro WHERE id_Livro = ?";
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                livro = new Livro();
+                livro.setIdLivro(rs.getInt("id_Livro"));
+                livro.setNomeLivro(rs.getString("nome_Livro"));
+                livro.setAutorLivro(rs.getString("autor_Livro"));
+                livro.setDsecLivro(rs.getString("dsec_Livro"));
+                livro.setIdGeneroLiv(rs.getInt("id_GeneroLiv"));
+                livro.setStatus(rs.getString("status"));
+                livro.setDataCriacaoLivro(rs.getDate("dataCriacao_Livro"));
+                livro.setCurtida(rs.getInt("curtida"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return livro;
+    }
+
+    public void atualizarLivro(Livro livro) {
+        String sql = "UPDATE tb_livro SET nome_Livro = ?, autor_Livro = ?, dsec_Livro = ?, id_GeneroLiv = ?, status = ?, dataCriacao_Livro = ?, curtida = ? WHERE id_Livro = ?";
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            stmt.setString(1, livro.getNomeLivro());
+            stmt.setString(2, livro.getAutorLivro());
+            stmt.setString(3, livro.getDsecLivro());
+            stmt.setInt(4, livro.getIdGeneroLiv());
+            stmt.setString(5, livro.getStatus());
+            stmt.setDate(6, new java.sql.Date(livro.getDataCriacaoLivro().getTime()));
+            stmt.setInt(7, livro.getCurtida());
+            stmt.setInt(8, livro.getIdLivro());
+            stmt.executeUpdate();
+            System.out.println("Livro atualizado com sucesso!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<Livro> buscarLivrosPorNome(String nomeParcial) {
+        List<Livro> livros = new ArrayList<>();
+        String sql = "SELECT id_Livro, nome_Livro FROM tb_livro WHERE nome_Livro LIKE ?";
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            stmt.setString(1, "%" + nomeParcial + "%");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Livro livro = new Livro();
+                livro.setIdLivro(rs.getInt("id_Livro"));
+                livro.setNomeLivro(rs.getString("nome_Livro"));
+                livros.add(livro);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return livros;
+    }
+
+    public List<Livro> consultarLivrosEmAlta() {
+        List<Livro> livrosEmAlta = new ArrayList<>();
+        String sql = "SELECT id_Livro, nome_Livro, dsec_Livro, curtida FROM tb_livro ORDER BY curtida DESC LIMIT 3";
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Livro livro = new Livro();
+                livro.setIdLivro(rs.getInt("id_Livro"));
+                livro.setNomeLivro(rs.getString("nome_Livro"));
+                livro.setDsecLivro(rs.getString("dsec_Livro"));
+                livro.setCurtida(rs.getInt("curtida"));
+                livrosEmAlta.add(livro);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return livrosEmAlta;
+    }
+
+    public void incrementarCurtida(int idLivro) {
+        String sql = "UPDATE tb_livro SET curtida = curtida + 1 WHERE id_Livro = ?";
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            stmt.setInt(1, idLivro);
+            stmt.executeUpdate();
+            System.out.println("Curtida incrementada com sucesso!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+}

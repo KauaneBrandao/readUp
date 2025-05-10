@@ -1,0 +1,98 @@
+package Model;
+public class Usuario {
+    private int idUsuario;
+    private String loginUsuario;
+    private String senhaUsuario;
+    private String nomeUsuario;
+    private String telefoneUsuario;
+    private String emailUsuario;
+    private String privilegioUsuario;
+    private int idadeUsuario;
+    private int idCurte;
+
+    public Usuario() {}
+
+    public Usuario(int idUsuario, String loginUsuario, String senhaUsuario, String nomeUsuario, String telefoneUsuario, String emailUsuario, String privilegioUsuario, int idadeUsuario, int idCurte) {
+        this.idUsuario = idUsuario;
+        this.loginUsuario = loginUsuario;
+        this.senhaUsuario = senhaUsuario;
+        this.nomeUsuario = nomeUsuario;
+        this.telefoneUsuario = telefoneUsuario;
+        this.emailUsuario = emailUsuario;
+        this.privilegioUsuario = privilegioUsuario;
+        this.idadeUsuario = idadeUsuario;
+        this.idCurte = idCurte;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public String getLoginUsuario() {
+        return loginUsuario;
+    }
+
+    public void setLoginUsuario(String loginUsuario) {
+        this.loginUsuario = loginUsuario;
+    }
+
+    public String getSenhaUsuario() {
+        return senhaUsuario;
+    }
+
+    public void setSenhaUsuario(String senhaUsuario) {
+        this.senhaUsuario = senhaUsuario;
+    }
+
+    public String getNomeUsuario() {
+        return nomeUsuario;
+    }
+
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
+    }
+
+    public String getTelefoneUsuario() {
+        return telefoneUsuario;
+    }
+
+    public void setTelefoneUsuario(String telefoneUsuario) {
+        this.telefoneUsuario = telefoneUsuario;
+    }
+
+    public String getEmailUsuario() {
+        return emailUsuario;
+    }
+
+    public void setEmailUsuario(String emailUsuario) {
+        this.emailUsuario = emailUsuario;
+    }
+
+    public String getPrivilegioUsuario() {
+        return privilegioUsuario;
+    }
+
+    public void setPrivilegioUsuario(String privilegioUsuario) {
+        this.privilegioUsuario = privilegioUsuario;
+    }
+
+    public int getIdadeUsuario() {
+        return idadeUsuario;
+    }
+
+    public void setIdadeUsuario(int idadeUsuario) {
+        this.idadeUsuario = idadeUsuario;
+    }
+
+    public int getIdCurte() {
+        return idCurte;
+    }
+
+    public void setIdCurte(int idCurte) {
+        this.idCurte = idCurte;
+    }
+}
