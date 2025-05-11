@@ -1,12 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Telas;
+
+import DAO.LivroDAO;
+import Model.Livro;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author kauan
+ * @author kauane
  */
 public class TelaBuscaLivro extends javax.swing.JFrame {
 
@@ -15,6 +17,7 @@ public class TelaBuscaLivro extends javax.swing.JFrame {
      */
     public TelaBuscaLivro() {
         initComponents();
+        LivroDAO = new LivroDAO();
     }
 
     /**
@@ -26,21 +29,140 @@ public class TelaBuscaLivro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        fundo = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableTabela = new javax.swing.JTable();
+        btnProcurar = new javax.swing.JButton();
+        btnConcluido = new javax.swing.JButton();
+        txtBuscarLiv = new javax.swing.JTextField();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        fundo.setBackground(new java.awt.Color(0, 18, 111));
+
+        jLabel1.setFont(new java.awt.Font("Tw Cen MT", 1, 35)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Buscar livros");
+
+        tableTabela.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "id", "Livro", "Autor"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tableTabela);
+
+        btnProcurar.setBackground(new java.awt.Color(255, 153, 51));
+        btnProcurar.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
+        btnProcurar.setForeground(new java.awt.Color(255, 255, 255));
+        btnProcurar.setText("Procurar");
+        btnProcurar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProcurarActionPerformed(evt);
+            }
+        });
+
+        btnConcluido.setBackground(new java.awt.Color(68, 75, 255));
+        btnConcluido.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
+        btnConcluido.setForeground(new java.awt.Color(255, 255, 255));
+        btnConcluido.setText("Concluído");
+        btnConcluido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConcluidoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout fundoLayout = new javax.swing.GroupLayout(fundo);
+        fundo.setLayout(fundoLayout);
+        fundoLayout.setHorizontalGroup(
+            fundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fundoLayout.createSequentialGroup()
+                .addGroup(fundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(fundoLayout.createSequentialGroup()
+                        .addGap(386, 386, 386)
+                        .addComponent(jLabel1))
+                    .addGroup(fundoLayout.createSequentialGroup()
+                        .addGap(116, 116, 116)
+                        .addGroup(fundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(fundoLayout.createSequentialGroup()
+                                .addComponent(txtBuscarLiv, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnProcurar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(fundoLayout.createSequentialGroup()
+                        .addGap(403, 403, 403)
+                        .addComponent(btnConcluido, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(194, Short.MAX_VALUE))
+        );
+        fundoLayout.setVerticalGroup(
+            fundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fundoLayout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addGroup(fundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(fundoLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(btnProcurar, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
+                    .addComponent(txtBuscarLiv, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(btnConcluido, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(fundo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(fundo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+     private void preencherTabela(ArrayList<Livro> livros) {
+        DefaultTableModel model = (DefaultTableModel) tableTabela.getModel();
+        model.setRowCount(0); // Limpa a tabela antes de adicionar novos dados
+
+        for (Livro livro : livros) {
+            Object[] row = {livro.getIdLivro(), livro.getNomeLivro(), livro.getAutorLivro()};
+            model.addRow(row); // Adiciona uma nova linha à tabela com os dados do projeto
+        }
+    }
+    
+    private LivroDAO LivroDAO;
+    private void btnProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarActionPerformed
+         String nomeParcial = txtBuscarLiv.getText();
+        List<Livro> livros = LivroDAO.buscarlivrosPorNomeParcial(nomeParcial);
+        ArrayList<Livro> livrosArrayList = new ArrayList<>(livros);
+        preencherTabela(livrosArrayList);
+    }//GEN-LAST:event_btnProcurarActionPerformed
+
+    private void btnConcluidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConcluidoActionPerformed
+        this.dispose();
+        TelaDetalheLivro telaDetalheLivro  = new  TelaDetalheLivro();
+        telaDetalheLivro.setVisible(true);
+    }//GEN-LAST:event_btnConcluidoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +200,12 @@ public class TelaBuscaLivro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConcluido;
+    private javax.swing.JButton btnProcurar;
+    private javax.swing.JPanel fundo;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tableTabela;
+    private javax.swing.JTextField txtBuscarLiv;
     // End of variables declaration//GEN-END:variables
 }

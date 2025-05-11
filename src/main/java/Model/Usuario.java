@@ -8,11 +8,10 @@ public class Usuario {
     private String emailUsuario;
     private String privilegioUsuario;
     private int idadeUsuario;
-    private int idCurte;
 
     public Usuario() {}
 
-    public Usuario(int idUsuario, String loginUsuario, String senhaUsuario, String nomeUsuario, String telefoneUsuario, String emailUsuario, String privilegioUsuario, int idadeUsuario, int idCurte) {
+    public Usuario(int idUsuario, String loginUsuario, String senhaUsuario, String nomeUsuario, String telefoneUsuario, String emailUsuario, String privilegioUsuario, int idadeUsuario) {
         this.idUsuario = idUsuario;
         this.loginUsuario = loginUsuario;
         this.senhaUsuario = senhaUsuario;
@@ -21,7 +20,6 @@ public class Usuario {
         this.emailUsuario = emailUsuario;
         this.privilegioUsuario = privilegioUsuario;
         this.idadeUsuario = idadeUsuario;
-        this.idCurte = idCurte;
     }
 
     public int getIdUsuario() {
@@ -88,11 +86,5 @@ public class Usuario {
         this.idadeUsuario = idadeUsuario;
     }
 
-    public int getIdCurte() {
-        return idCurte;
-    }
-
-    public void setIdCurte(int idCurte) {
-        this.idCurte = idCurte;
-    }
+   
 }

@@ -1,13 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Telas;
 
-/**
- *
- * @author kauan
- */
+import DAO.UsuarioDAO;
+import Model.Usuario;
+import javax.swing.JOptionPane;
+
 public class TelaCadastroUser extends javax.swing.JFrame {
 
     /**
@@ -26,21 +22,191 @@ public class TelaCadastroUser extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        corFundo = new javax.swing.JPanel();
+        txtCadastro = new javax.swing.JLabel();
+        txtNome = new javax.swing.JLabel();
+        txtfieldNome = new javax.swing.JTextField();
+        txtUsuario = new javax.swing.JLabel();
+        txtfieldUsuario = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        txtfieldTelefone = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JLabel();
+        txtfieldEmail = new javax.swing.JTextField();
+        txtfieldIdade = new javax.swing.JTextField();
+        txtIdade = new javax.swing.JLabel();
+        btnCancelar = new javax.swing.JButton();
+        btnConcluido = new javax.swing.JButton();
+        txtsenha = new javax.swing.JLabel();
+        passfieldSenha = new javax.swing.JPasswordField();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        corFundo.setBackground(new java.awt.Color(0, 18, 111));
+
+        txtCadastro.setFont(new java.awt.Font("Tw Cen MT", 1, 36)); // NOI18N
+        txtCadastro.setForeground(new java.awt.Color(255, 255, 255));
+        txtCadastro.setText("Cadastro");
+
+        txtNome.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtNome.setForeground(new java.awt.Color(255, 255, 255));
+        txtNome.setText("Nome:");
+
+        txtUsuario.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        txtUsuario.setText("Usuário:");
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Telefone:");
+
+        txtEmail.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtEmail.setForeground(new java.awt.Color(255, 255, 255));
+        txtEmail.setText("Email:");
+
+        txtIdade.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtIdade.setForeground(new java.awt.Color(255, 255, 255));
+        txtIdade.setText("Idade:");
+
+        btnCancelar.setBackground(new java.awt.Color(68, 75, 255));
+        btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
+        btnConcluido.setBackground(new java.awt.Color(255, 153, 51));
+        btnConcluido.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnConcluido.setForeground(new java.awt.Color(255, 255, 255));
+        btnConcluido.setText("Cadastrar");
+        btnConcluido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConcluidoActionPerformed(evt);
+            }
+        });
+
+        txtsenha.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtsenha.setForeground(new java.awt.Color(255, 255, 255));
+        txtsenha.setText("Senha:");
+
+        javax.swing.GroupLayout corFundoLayout = new javax.swing.GroupLayout(corFundo);
+        corFundo.setLayout(corFundoLayout);
+        corFundoLayout.setHorizontalGroup(
+            corFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, corFundoLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(txtCadastro)
+                .addGap(327, 327, 327))
+            .addGroup(corFundoLayout.createSequentialGroup()
+                .addGroup(corFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(corFundoLayout.createSequentialGroup()
+                        .addGap(276, 276, 276)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(110, 110, 110)
+                        .addComponent(btnConcluido, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(corFundoLayout.createSequentialGroup()
+                        .addGap(220, 220, 220)
+                        .addGroup(corFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtsenha)
+                            .addComponent(txtIdade)
+                            .addComponent(txtNome)
+                            .addComponent(txtUsuario)
+                            .addComponent(txtfieldNome, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+                            .addComponent(txtfieldUsuario)
+                            .addComponent(jLabel1)
+                            .addComponent(txtfieldTelefone)
+                            .addComponent(txtEmail)
+                            .addComponent(txtfieldEmail)
+                            .addComponent(txtfieldIdade)
+                            .addComponent(passfieldSenha))))
+                .addContainerGap(142, Short.MAX_VALUE))
+        );
+        corFundoLayout.setVerticalGroup(
+            corFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(corFundoLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(txtCadastro)
+                .addGap(24, 24, 24)
+                .addComponent(txtNome)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtfieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtUsuario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtfieldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtfieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtEmail)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtfieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtIdade)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtfieldIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtsenha)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(passfieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGroup(corFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnConcluido, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(corFundo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(corFundo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 161, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnConcluidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConcluidoActionPerformed
+        String nomeUsuario = txtfieldNome.getText();
+        String emailUsuario = txtfieldEmail.getText();
+        String telefoneUsuario = txtfieldTelefone.getText();
+        String loginUsuario = txtfieldUsuario.getText();
+        String senhaUsuario = new String(passfieldSenha.getPassword());
+        int idadeUsuario = Integer.parseInt(txtfieldIdade.getText());
+        String privilegioUsuario = "User";
+
+        if ("".equals(nomeUsuario) || "".equals(emailUsuario) || "".equals(telefoneUsuario) || "".equals(senhaUsuario)) {
+            JOptionPane.showMessageDialog(this, "Campos obrigatórios ausentes", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else {
+
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            usuarioDAO.inserirUsuario(loginUsuario, senhaUsuario, nomeUsuario, telefoneUsuario, emailUsuario, privilegioUsuario, idadeUsuario);
+
+            JOptionPane.showMessageDialog(this, "Usuário cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+
+            // Volta para a tela de login
+            TelaLogin telaLogin = new TelaLogin();
+            telaLogin.setVisible(true);
+
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnConcluidoActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        TelaLogin telaLogin = new TelaLogin();
+        telaLogin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +244,21 @@ public class TelaCadastroUser extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnConcluido;
+    private javax.swing.JPanel corFundo;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPasswordField passfieldSenha;
+    private javax.swing.JLabel txtCadastro;
+    private javax.swing.JLabel txtEmail;
+    private javax.swing.JLabel txtIdade;
+    private javax.swing.JLabel txtNome;
+    private javax.swing.JLabel txtUsuario;
+    private javax.swing.JTextField txtfieldEmail;
+    private javax.swing.JTextField txtfieldIdade;
+    private javax.swing.JTextField txtfieldNome;
+    private javax.swing.JTextField txtfieldTelefone;
+    private javax.swing.JTextField txtfieldUsuario;
+    private javax.swing.JLabel txtsenha;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,8 +16,8 @@ public class UsuarioDAO {
         this.conexao = factory.obtemConexao();
     }
 
-    public void inserirUsuario(String loginUsuario, String senhaUsuario, String nomeUsuario, String telefoneUsuario, String emailUsuario, String privilegioUsuario, int idadeUsuario, int idCurte) {
-        String sql = "INSERT INTO tb_Usuario(login_Usuario, senha_Usuario, nome_Usuario, telefone_Usuario, email_Usuario, privilegio_Usuario, idade_Usuario, id_Curte) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+    public void inserirUsuario(String loginUsuario, String senhaUsuario, String nomeUsuario, String telefoneUsuario, String emailUsuario, String privilegioUsuario, int idadeUsuario) {
+        String sql = "INSERT INTO tb_Usuario(login_Usuario, senha_Usuario, nome_Usuario, telefone_Usuario, email_Usuario, privilegio_Usuario, idade_Usuario) VALUES(?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement ps = conexao.prepareStatement(sql)) {
             ps.setString(1, loginUsuario);
@@ -27,7 +27,6 @@ public class UsuarioDAO {
             ps.setString(5, emailUsuario);
             ps.setString(6, privilegioUsuario);
             ps.setInt(7, idadeUsuario);
-            ps.setInt(8, idCurte);
 
             ps.execute();
         } catch (SQLException e) {
@@ -52,8 +51,7 @@ public class UsuarioDAO {
                         rs.getString("telefone_Usuario"),
                         rs.getString("email_Usuario"),
                         rs.getString("privilegio_Usuario"),
-                        rs.getInt("idade_Usuario"),
-                        rs.getInt("id_Curte")
+                        rs.getInt("idade_Usuario")
                 );
             }
         } catch (SQLException e) {
@@ -80,7 +78,6 @@ public class UsuarioDAO {
                 usuario.setEmailUsuario(rs.getString("email_Usuario"));
                 usuario.setPrivilegioUsuario(rs.getString("privilegio_Usuario"));
                 usuario.setIdadeUsuario(rs.getInt("idade_Usuario"));
-                usuario.setIdCurte(rs.getInt("id_Curte"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -89,7 +86,7 @@ public class UsuarioDAO {
     }
 
     public boolean atualizarUsuario(Usuario usuario) {
-        String sql = "UPDATE tb_Usuario SET nome_Usuario = ?, telefone_Usuario = ?, email_Usuario = ?, senha_Usuario = ?, privilegio_Usuario = ?, idade_Usuario = ?, id_Curte = ? WHERE login_Usuario = ?";
+        String sql = "UPDATE tb_Usuario SET nome_Usuario = ?, telefone_Usuario = ?, email_Usuario = ?, senha_Usuario = ?, privilegio_Usuario = ?, idade_Usuario = ? WHERE login_Usuario = ?";
 
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             stmt.setString(1, usuario.getNomeUsuario());
@@ -98,7 +95,6 @@ public class UsuarioDAO {
             stmt.setString(4, usuario.getSenhaUsuario());
             stmt.setString(5, usuario.getPrivilegioUsuario());
             stmt.setInt(6, usuario.getIdadeUsuario());
-            stmt.setInt(7, usuario.getIdCurte());
             stmt.setString(8, usuario.getLoginUsuario());
 
             int rowsUpdated = stmt.executeUpdate();
