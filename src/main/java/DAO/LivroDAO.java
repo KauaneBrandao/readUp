@@ -18,22 +18,25 @@ public class LivroDAO {
         this.conexao = factory.obtemConexao();
     }
 
-    public void inserirLivro(Livro livro) {
-        String sql = "INSERT INTO tb_livro (nome_Livro, autor_Livro, dsec_Livro, id_GeneroLiv, status, dataCriacao_Livro, curtida) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
-            stmt.setString(1, livro.getNomeLivro());
-            stmt.setString(2, livro.getAutorLivro());
-            stmt.setString(3, livro.getDsecLivro());
-            stmt.setInt(4, livro.getIdGeneroLiv());
-            stmt.setString(5, livro.getStatus());
-            stmt.setDate(6, new java.sql.Date(livro.getDataCriacaoLivro().getTime()));
-            stmt.setInt(7, livro.getCurtida());
-            stmt.executeUpdate();
-            System.out.println("Livro cadastrado com sucesso!");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+   public boolean cadastrarLivro(Livro livro) {
+    String sql = "INSERT INTO tb_livro (nome_Livro, autor_Livro, dsec_Livro, id_GeneroLiv, status, dataCriacao_Livro, curtida, imagemCapa) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+        stmt.setString(1, livro.getNomeLivro());
+        stmt.setString(2, livro.getAutorLivro());
+        stmt.setString(3, livro.getDsecLivro());
+        stmt.setInt(4, livro.getIdGeneroLiv());
+        stmt.setString(5, livro.getStatus());
+        stmt.setDate(6, new java.sql.Date(livro.getDataCriacaoLivro().getTime()));
+        stmt.setInt(7, livro.getCurtida());
+        stmt.setString(8, livro.getImagemCapa());
+        stmt.executeUpdate();
+        return true;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
     }
+}
+
 
     public Livro buscarLivroPorID(int id) {
         Livro livro = null;
@@ -59,7 +62,8 @@ public class LivroDAO {
     }
 
     public void atualizarLivro(Livro livro) {
-        String sql = "UPDATE tb_livro SET nome_Livro = ?, autor_Livro = ?, dsec_Livro = ?, id_GeneroLiv = ?, status = ?, dataCriacao_Livro = ?, curtida = ? WHERE id_Livro = ?";
+       String sql = "INSERT INTO tb_livro (nome_Livro, autor_Livro, dsec_Livro, id_GeneroLiv, status, dataCriacao_Livro, curtida, imagemCapa) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             stmt.setString(1, livro.getNomeLivro());
             stmt.setString(2, livro.getAutorLivro());
@@ -69,6 +73,8 @@ public class LivroDAO {
             stmt.setDate(6, new java.sql.Date(livro.getDataCriacaoLivro().getTime()));
             stmt.setInt(7, livro.getCurtida());
             stmt.setInt(8, livro.getIdLivro());
+            stmt.setString(8, livro.getImagemCapa());
+
             stmt.executeUpdate();
             System.out.println("Livro atualizado com sucesso!");
         } catch (SQLException e) {
@@ -112,6 +118,8 @@ public class LivroDAO {
         }
         return livrosEmAlta;
     }
+    
+    
 
     public void incrementarCurtida(int idLivro) {
         String sql = "UPDATE tb_livro SET curtida = curtida + 1 WHERE id_Livro = ?";
@@ -123,5 +131,17 @@ public class LivroDAO {
             e.printStackTrace();
         }
     }
+    
+    public void inserirCapaLivro(Livro livro) {
+    String sql = "INSERT INTO tb_livro (imagemCapa) VALUES (?)";
+
+    try (PreparedStatement ps = conexao.prepareStatement(sql)) {
+        ps.setString(1, livro.getImagemCapa());
+        ps.execute();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+
 
 }

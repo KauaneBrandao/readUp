@@ -11,10 +11,11 @@ public class Livro {
     private String status;
     private Date dataCriacaoLivro;
     private int curtida;
+     private String imagemCapa; // <-- Novo campo
 
     public Livro() {}
 
-    public Livro(int idLivro, String nomeLivro, String autorLivro, String dsecLivro, int idGeneroLiv, String status, Date dataCriacaoLivro, int curtida) {
+    public Livro(int idLivro, String nomeLivro, String autorLivro, String dsecLivro, int idGeneroLiv, String status, Date dataCriacaoLivro, int curtida, String imagemCapa) {
         this.idLivro = idLivro;
         this.nomeLivro = nomeLivro;
         this.autorLivro = autorLivro;
@@ -23,6 +24,7 @@ public class Livro {
         this.status = status;
         this.dataCriacaoLivro = dataCriacaoLivro;
         this.curtida = curtida;
+        this.imagemCapa = imagemCapa;
     }
 
     public int getIdLivro() {
@@ -87,5 +89,12 @@ public class Livro {
 
     public void setCurtida(int curtida) {
         this.curtida = curtida;
+    }
+     public String getImagemCapa() {
+        return imagemCapa;
+    }
+
+    public void setImagemCapa(String imagemCapa) {
+        this.imagemCapa = imagemCapa;
     }
 }

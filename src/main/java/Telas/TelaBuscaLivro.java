@@ -153,7 +153,7 @@ public class TelaBuscaLivro extends javax.swing.JFrame {
     private LivroDAO LivroDAO;
     private void btnProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarActionPerformed
          String nomeParcial = txtBuscarLiv.getText();
-        List<Livro> livros = LivroDAO.buscarlivrosPorNomeParcial(nomeParcial);
+        List<Livro> livros = LivroDAO.buscarLivrosPorNome(nomeParcial);
         ArrayList<Livro> livrosArrayList = new ArrayList<>(livros);
         preencherTabela(livrosArrayList);
     }//GEN-LAST:event_btnProcurarActionPerformed
