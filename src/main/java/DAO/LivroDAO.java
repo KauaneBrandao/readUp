@@ -17,9 +17,11 @@ public class LivroDAO {
         ConnectionFactory factory = new ConnectionFactory();
         this.conexao = factory.obtemConexao();
     }
+    
+    
 
    public boolean cadastrarLivro(Livro livro) {
-    String sql = "INSERT INTO tb_livro (nome_Livro, autor_Livro, dsec_Livro, id_GeneroLiv, status, dataCriacao_Livro, curtida, imagemCapa) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+     String sql = "INSERT INTO tb_livro (nome_Livro, autor_Livro, dsec_Livro, id_GeneroLiv, status, dataCriacao_Livro, curtida, imagemCapa) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
         stmt.setString(1, livro.getNomeLivro());
         stmt.setString(2, livro.getAutorLivro());
@@ -28,7 +30,12 @@ public class LivroDAO {
         stmt.setString(5, livro.getStatus());
         stmt.setDate(6, new java.sql.Date(livro.getDataCriacaoLivro().getTime()));
         stmt.setInt(7, livro.getCurtida());
-        stmt.setString(8, livro.getImagemCapa());
+        if (livro.getImagemCapa() != null) {
+            stmt.setString(8, livro.getImagemCapa());
+        } else {
+            stmt.setNull(8, java.sql.Types.VARCHAR);
+        }
+
         stmt.executeUpdate();
         return true;
     } catch (SQLException e) {

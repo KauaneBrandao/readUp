@@ -27,5 +27,10 @@ public class GeneroLiv {
     public void setNomeGeneroLiv(String nomeGeneroLiv) {
         this.nomeGeneroLiv = nomeGeneroLiv;
     }
+    
+      @Override
+    public String toString() {
+        return nomeGeneroLiv; // Isso faz com que o JComboBox mostre o nome
+    }
 }
 
