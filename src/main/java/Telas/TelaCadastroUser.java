@@ -38,6 +38,7 @@ public class TelaCadastroUser extends javax.swing.JFrame {
         btnConcluido = new javax.swing.JButton();
         txtsenha = new javax.swing.JLabel();
         passfieldSenha = new javax.swing.JPasswordField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,48 +92,55 @@ public class TelaCadastroUser extends javax.swing.JFrame {
         txtsenha.setForeground(new java.awt.Color(255, 255, 255));
         txtsenha.setText("Senha:");
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/2.png"))); // NOI18N
+
         javax.swing.GroupLayout corFundoLayout = new javax.swing.GroupLayout(corFundo);
         corFundo.setLayout(corFundoLayout);
         corFundoLayout.setHorizontalGroup(
             corFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, corFundoLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(txtCadastro)
-                .addGap(327, 327, 327))
             .addGroup(corFundoLayout.createSequentialGroup()
                 .addGroup(corFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(corFundoLayout.createSequentialGroup()
-                        .addGap(276, 276, 276)
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(254, 254, 254)
+                        .addComponent(txtCadastro))
+                    .addGroup(corFundoLayout.createSequentialGroup()
+                        .addGap(251, 251, 251)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(110, 110, 110)
+                        .addGap(135, 135, 135)
                         .addComponent(btnConcluido, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(corFundoLayout.createSequentialGroup()
-                        .addGap(220, 220, 220)
-                        .addGroup(corFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtsenha)
-                            .addComponent(txtIdade)
-                            .addComponent(txtNome)
-                            .addComponent(txtUsuario)
-                            .addComponent(txtfieldNome, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
-                            .addComponent(txtfieldUsuario)
-                            .addComponent(jLabel1)
-                            .addComponent(txtfieldTelefone)
-                            .addComponent(txtEmail)
-                            .addComponent(txtfieldEmail)
-                            .addComponent(txtfieldIdade)
-                            .addComponent(passfieldSenha))))
-                .addContainerGap(142, Short.MAX_VALUE))
+                        .addGap(202, 202, 202)
+                        .addGroup(corFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtfieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(corFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtsenha)
+                                .addComponent(txtIdade)
+                                .addComponent(txtNome)
+                                .addComponent(txtUsuario)
+                                .addComponent(txtfieldNome, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+                                .addComponent(txtfieldUsuario)
+                                .addComponent(jLabel1)
+                                .addComponent(txtfieldTelefone)
+                                .addComponent(txtEmail)
+                                .addComponent(txtfieldIdade)
+                                .addComponent(passfieldSenha)))))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         corFundoLayout.setVerticalGroup(
             corFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(corFundoLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(txtCadastro)
-                .addGap(24, 24, 24)
+                .addGroup(corFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(corFundoLayout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(txtCadastro))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
                 .addComponent(txtNome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtfieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtUsuario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtfieldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -140,7 +148,7 @@ public class TelaCadastroUser extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtfieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtEmail)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtfieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -148,14 +156,15 @@ public class TelaCadastroUser extends javax.swing.JFrame {
                 .addComponent(txtIdade)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtfieldIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtsenha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(passfieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addGroup(corFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnConcluido, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnConcluido, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 28, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -170,7 +179,7 @@ public class TelaCadastroUser extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(corFundo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 161, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -248,6 +257,7 @@ public class TelaCadastroUser extends javax.swing.JFrame {
     private javax.swing.JButton btnConcluido;
     private javax.swing.JPanel corFundo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPasswordField passfieldSenha;
     private javax.swing.JLabel txtCadastro;
     private javax.swing.JLabel txtEmail;
