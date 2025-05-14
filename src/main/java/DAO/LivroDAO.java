@@ -7,9 +7,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class LivroDAO {
+    
 
     private final Connection conexao;
 
@@ -21,19 +23,33 @@ public class LivroDAO {
     
 
    public boolean cadastrarLivro(Livro livro) {
-     String sql = "INSERT INTO tb_livro (nome_Livro, autor_Livro, dsec_Livro, id_GeneroLiv, status, dataCriacao_Livro, curtida, imagemCapa) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    String sql = "INSERT INTO tb_livro (nome_Livro, autor_Livro, dsec_Livro, id_GeneroLiv, dataCriacao_Livro, curtida, imagemCapa) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
     try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
         stmt.setString(1, livro.getNomeLivro());
         stmt.setString(2, livro.getAutorLivro());
         stmt.setString(3, livro.getDsecLivro());
         stmt.setInt(4, livro.getIdGeneroLiv());
-        stmt.setString(5, livro.getStatus());
-        stmt.setDate(6, new java.sql.Date(livro.getDataCriacaoLivro().getTime()));
-        stmt.setInt(7, livro.getCurtida());
-        if (livro.getImagemCapa() != null) {
-            stmt.setString(8, livro.getImagemCapa());
+        
+        // Garantir que a data seja inserida
+        Date dataCriacao = livro.getDataCriacaoLivro();
+        if (dataCriacao == null) {
+            dataCriacao = new Date(); // usa a data atual se não tiver sido definida
+        }
+        stmt.setDate(5, new java.sql.Date(dataCriacao.getTime()));
+
+        // Curtida (pode ser null)
+        if (livro.getCurtida() != 0) {
+            stmt.setInt(6, livro.getCurtida());
         } else {
-            stmt.setNull(8, java.sql.Types.VARCHAR);
+            stmt.setNull(6, java.sql.Types.INTEGER);
+        }
+
+        // Imagem (pode ser null)
+        if (livro.getImagemCapa() != null) {
+            stmt.setString(7, livro.getImagemCapa());
+        } else {
+            stmt.setNull(7, java.sql.Types.VARCHAR);
         }
 
         stmt.executeUpdate();
@@ -43,6 +59,7 @@ public class LivroDAO {
         return false;
     }
 }
+
 
 
     public Livro buscarLivroPorID(int id) {
@@ -58,7 +75,6 @@ public class LivroDAO {
                 livro.setAutorLivro(rs.getString("autor_Livro"));
                 livro.setDsecLivro(rs.getString("dsec_Livro"));
                 livro.setIdGeneroLiv(rs.getInt("id_GeneroLiv"));
-                livro.setStatus(rs.getString("status"));
                 livro.setDataCriacaoLivro(rs.getDate("dataCriacao_Livro"));
                 livro.setCurtida(rs.getInt("curtida"));
             }
@@ -69,14 +85,13 @@ public class LivroDAO {
     }
 
     public void atualizarLivro(Livro livro) {
-       String sql = "INSERT INTO tb_livro (nome_Livro, autor_Livro, dsec_Livro, id_GeneroLiv, status, dataCriacao_Livro, curtida, imagemCapa) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+       String sql = "INSERT INTO tb_livro (nome_Livro, autor_Livro, dsec_Livro, id_GeneroLiv, dataCriacao_Livro, curtida, imagemCapa) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             stmt.setString(1, livro.getNomeLivro());
             stmt.setString(2, livro.getAutorLivro());
             stmt.setString(3, livro.getDsecLivro());
             stmt.setInt(4, livro.getIdGeneroLiv());
-            stmt.setString(5, livro.getStatus());
             stmt.setDate(6, new java.sql.Date(livro.getDataCriacaoLivro().getTime()));
             stmt.setInt(7, livro.getCurtida());
             stmt.setInt(8, livro.getIdLivro());

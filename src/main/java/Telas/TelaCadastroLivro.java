@@ -52,7 +52,6 @@ public class TelaCadastroLivro extends javax.swing.JFrame {
         livro.setAutorLivro(autor);
         livro.setDsecLivro(descricao);
         livro.setIdGeneroLiv(generoSelecionado.getIdGeneroLiv());
-        livro.setStatus("ativo");
         livro.setDataCriacaoLivro(new Date());
         livro.setCurtida(0);
         livro.setImagemCapa(caminhoImagemSelecionada);
@@ -177,6 +176,11 @@ public class TelaCadastroLivro extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Sair");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/2.png"))); // NOI18N
 
@@ -280,7 +284,6 @@ public class TelaCadastroLivro extends javax.swing.JFrame {
 
         // Dados obrigatórios que você ainda não pega da tela:
         livro.setIdGeneroLiv(1); // Ex: gênero fictício com ID 1 (você pode pegar de um JComboBox futuramente)
-        livro.setStatus("ativo"); // ou "disponível", conforme a lógica do seu sistema
         livro.setDataCriacaoLivro(new java.util.Date()); // data atual
         livro.setCurtida(0); // novo livro começa com 0 curtidas
         livro.setImagemCapa("sem_capa.jpg"); // valor padrão se ainda não seleciona a imagem
@@ -304,7 +307,6 @@ public class TelaCadastroLivro extends javax.swing.JFrame {
         livro.setAutorLivro(textField2.getText());
         livro.setDsecLivro(jTextArea1.getText());
         livro.setIdGeneroLiv(jComboBox1.getSelectedIndex()); // depende da lógica de ID
-        livro.setStatus("ativo");
         livro.setDataCriacaoLivro(new Date());
         livro.setCurtida(0);
         livro.setImagemCapa(caminhoImagemSelecionada); // salva o caminho da imagem
@@ -320,6 +322,12 @@ public class TelaCadastroLivro extends javax.swing.JFrame {
         
     
     }//GEN-LAST:event_textField1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        TelaUser telaUser = new  TelaUser();
+        telaUser.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     
     /**
