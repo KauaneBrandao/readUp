@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Telas;
-
+import Model.Usuario;
+import DAO.UsuarioDAO;
+import javax.swing.JOptionPane;
 /**
  *
  * @author kauan
@@ -122,6 +124,11 @@ public class TelaGerenciarUser extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Voltar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -247,12 +254,59 @@ public class TelaGerenciarUser extends javax.swing.JFrame {
     }//GEN-LAST:event_textField1ActionPerformed
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
-        // TODO add your handling code here:
+        String login = textField2.getText();
+
+
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        Usuario usuario = usuarioDAO.pesquisarUsuario(login);
+
+        if (usuario != null) {
+            textField1.setText(usuario.getNomeUsuario());           // Nome
+            textField3.setText(usuario.getTelefoneUsuario());       // Telefone
+            textField4.setText(usuario.getEmailUsuario());      // Email
+            textField6.setText(usuario.getSenhaUsuario());  // Senha
+            jComboBox1.setSelectedItem(usuario.getPrivilegioUsuario()); // Privilegio
+            textField5.setText(String.valueOf(usuario.getIdadeUsuario())); // Idade
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuário não encontrado.");
+        }
+
     }//GEN-LAST:event_button1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        String nome = textField1.getText();
+        String telefone = textField3.getText();
+        String email = textField4.getText();
+        String senha = new String(textField6.getText());
+        String privilegio = (String) jComboBox1.getSelectedItem();
+        String login = textField2.getText();
+        int idade = Integer.parseInt(textField5.getText()); // Campo de idade
+
+        Usuario usuario = new Usuario();
+        usuario.setNomeUsuario(nome);
+        usuario.setTelefoneUsuario(telefone);
+        usuario.setEmailUsuario(email);
+        usuario.setSenhaUsuario(senha);
+        usuario.setPrivilegioUsuario(privilegio);
+        usuario.setLoginUsuario(login);
+        usuario.setIdadeUsuario(idade);
+
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        boolean sucesso = usuarioDAO.atualizarUsuario(usuario);
+
+        if (sucesso) {
+            JOptionPane.showMessageDialog(this, "Alteração feita com sucesso.");
+        } else {
+            JOptionPane.showMessageDialog(this, "Erro ao salvar as alterações.");
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        TelaAdmin telaAdmin = new TelaAdmin();
+        telaAdmin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
