@@ -165,5 +165,33 @@ public class LivroDAO {
     }
 }
 
+    //cria uma lista dos livros que estao no banco
+    public List<Livro> listarLivros() {
+        List<Livro> livros = new ArrayList<>();
+        String sql = "SELECT * FROM tb_livro";
+
+        try (PreparedStatement stmt = conexao.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Livro livro = new Livro();
+                livro.setIdLivro(rs.getInt("id_Livro"));
+                livro.setNomeLivro(rs.getString("nome_Livro"));
+                livro.setAutorLivro(rs.getString("autor_Livro"));
+                livro.setDsecLivro(rs.getString("dsec_Livro"));
+                livro.setIdGeneroLiv(rs.getInt("id_GeneroLiv"));
+                livro.setDataCriacaoLivro(rs.getDate("dataCriacao_Livro"));
+                livro.setCurtida(rs.getInt("curtida"));
+                livro.setImagemCapa(rs.getString("imagemCapa"));
+
+                livros.add(livro);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return livros;
+    }
+
 
 }
