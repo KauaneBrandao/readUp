@@ -19,9 +19,12 @@ public class TelaAdmin extends javax.swing.JFrame {
      */
     public TelaAdmin() {
         initComponents();
+        textAreaUser.setContentType("text/html");
+        TextAreaLivros.setContentType("text/html");
         TextAreaLivros.setEditable(false);
+        textAreaUser.setEditable(false);
         carregarLivros();
-       // carregarUsuarios();
+        carregarUser();
     }
     
 //aqui esta carregando os livros cadastrados 
@@ -29,19 +32,52 @@ public class TelaAdmin extends javax.swing.JFrame {
         try {
             LivroDAO livroDAO = new LivroDAO();
             List<Livro> livros = livroDAO.listarLivros();
-
             StringBuilder sb = new StringBuilder();
+            sb.append("<html><body>");
             for (Livro livro : livros) {
-                sb.append("Título: ").append(livro.getNomeLivro()).append("\n");
-                sb.append("Autor: ").append(livro.getAutorLivro()).append("\n\n");
+                sb.append("<p style='font-family:Arial, sans-serif; font-size:12px;'>")
+                   .append("<span style='color:#1a237e; font-weight:bold; font-size:10px;'>📘 Título:</span> ")
+                   .append("<span style='color:#000000; font-style:italic;'>")
+                   .append(livro.getNomeLivro()).append("</span><br>")
+                   .append("<span style='color:#ff8f49; font-weight:bold; font-size:10px;'>✍️ Autor:</span> ")
+                   .append("<span style='color:#000000;'>")
+                   .append(livro.getAutorLivro()).append("</span><br><br>")
+                   .append("<hr style='border:1px dashed #ccc;'>")
+                   .append("</p>");
             }
-
-            TextAreaLivros.setText(sb.toString());
+             sb.append("</body></html>");
+             TextAreaLivros.setText(sb.toString());
         } catch (Exception e) {
             e.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, "Erro ao carregar livros: " + e.getMessage());
         }
     }
+
+    private void carregarUser() {
+        try {
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            List<Usuario> usuarios = usuarioDAO.listarUsuarios();
+
+            StringBuilder sb = new StringBuilder();
+            sb.append("<html><body>");
+            for (Usuario usuario : usuarios) {
+                sb.append("<p style='font-family:Verdana, sans-serif; font-size:12px;'>")
+                   .append("<span style='color:#0d47a1; font-weight:bold; font-size:9px;'>👤 Login:</span> ")
+                   .append("<span style='color:#000000;'>").append(usuario.getLoginUsuario()).append("</span><br>")
+                   .append("<span style='color:#00695c; font-weight:bold; font-size:9px;'>📧 Email:</span> ")
+                   .append("<span style='color:#000000;'>").append(usuario.getEmailUsuario()).append("</span><br><br>")
+                   .append("<hr style='border:1px dashed #bbb;'>")
+                   .append("</p>");
+            }
+            sb.append("</body></html>");
+            textAreaUser.setContentType("text/html");
+            textAreaUser.setText(sb.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, "Erro ao carregar usuários: " + e.getMessage());
+        }
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -62,10 +98,13 @@ public class TelaAdmin extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TextAreaLivros = new javax.swing.JEditorPane();
+        jScrollPane5 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TextAreaLivros = new javax.swing.JTextArea();
+        textAreaUser = new javax.swing.JEditorPane();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -100,6 +139,11 @@ public class TelaAdmin extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Buscar Livros");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(255, 0, 0));
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -145,28 +189,33 @@ public class TelaAdmin extends javax.swing.JFrame {
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 177, Short.MAX_VALUE)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(103, 103, 103))
         );
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 18, 111));
         jLabel2.setText("Livros cadastrados:");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 18, 111));
         jLabel3.setText("Usuários:");
 
-        TextAreaLivros.setColumns(20);
-        TextAreaLivros.setRows(5);
-        jScrollPane1.setViewportView(TextAreaLivros);
+        TextAreaLivros.setEditable(false);
+        TextAreaLivros.setBackground(new java.awt.Color(255, 255, 255));
+        TextAreaLivros.setContentType("text/html\n"); // NOI18N
+        jScrollPane2.setViewportView(TextAreaLivros);
+
+        jScrollPane4.setViewportView(jScrollPane2);
+
+        textAreaUser.setEditable(false);
+        textAreaUser.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setViewportView(textAreaUser);
+
+        jScrollPane5.setViewportView(jScrollPane1);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -176,28 +225,25 @@ public class TelaAdmin extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(82, 82, 82)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(77, 77, 77)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addContainerGap(27, Short.MAX_VALUE))
+                    .addComponent(jLabel3)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jLabel3))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/2.png"))); // NOI18N
@@ -211,11 +257,12 @@ public class TelaAdmin extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap(34, Short.MAX_VALUE)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)))
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -225,7 +272,7 @@ public class TelaAdmin extends javax.swing.JFrame {
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -262,9 +309,11 @@ public class TelaAdmin extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        TelaBuscaLivro telaBusca = new  TelaBuscaLivro();
+        telaBusca.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -302,7 +351,7 @@ public class TelaAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea TextAreaLivros;
+    private javax.swing.JEditorPane TextAreaLivros;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -315,6 +364,9 @@ public class TelaAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JEditorPane textAreaUser;
     // End of variables declaration//GEN-END:variables
 }

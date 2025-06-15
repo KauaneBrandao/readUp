@@ -3,7 +3,6 @@ public class Usuario {
     private int idUsuario;
     private String loginUsuario;
     private String senhaUsuario;
-    private String nomeUsuario;
     private String telefoneUsuario;
     private String emailUsuario;
     private String privilegioUsuario;
@@ -11,11 +10,10 @@ public class Usuario {
 
     public Usuario() {}
 
-    public Usuario(int idUsuario, String loginUsuario, String senhaUsuario, String nomeUsuario, String telefoneUsuario, String emailUsuario, String privilegioUsuario, int idadeUsuario) {
+    public Usuario(int idUsuario, String loginUsuario, String senhaUsuario, String telefoneUsuario, String emailUsuario, String privilegioUsuario, int idadeUsuario) {
         this.idUsuario = idUsuario;
         this.loginUsuario = loginUsuario;
         this.senhaUsuario = senhaUsuario;
-        this.nomeUsuario = nomeUsuario;
         this.telefoneUsuario = telefoneUsuario;
         this.emailUsuario = emailUsuario;
         this.privilegioUsuario = privilegioUsuario;
@@ -44,14 +42,6 @@ public class Usuario {
 
     public void setSenhaUsuario(String senhaUsuario) {
         this.senhaUsuario = senhaUsuario;
-    }
-
-    public String getNomeUsuario() {
-        return nomeUsuario;
-    }
-
-    public void setNomeUsuario(String nomeUsuario) {
-        this.nomeUsuario = nomeUsuario;
     }
 
     public String getTelefoneUsuario() {

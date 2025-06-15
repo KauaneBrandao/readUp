@@ -261,7 +261,7 @@ public class TelaGerenciarUser extends javax.swing.JFrame {
         Usuario usuario = usuarioDAO.pesquisarUsuario(login);
 
         if (usuario != null) {
-            textField1.setText(usuario.getNomeUsuario());           // Nome
+            textField1.setText(usuario.getLoginUsuario());           // Nome
             textField3.setText(usuario.getTelefoneUsuario());       // Telefone
             textField4.setText(usuario.getEmailUsuario());      // Email
             textField6.setText(usuario.getSenhaUsuario());  // Senha
@@ -283,12 +283,11 @@ public class TelaGerenciarUser extends javax.swing.JFrame {
         int idade = Integer.parseInt(textField5.getText()); // Campo de idade
 
         Usuario usuario = new Usuario();
-        usuario.setNomeUsuario(nome);
+        usuario.setLoginUsuario(nome);
         usuario.setTelefoneUsuario(telefone);
         usuario.setEmailUsuario(email);
         usuario.setSenhaUsuario(senha);
         usuario.setPrivilegioUsuario(privilegio);
-        usuario.setLoginUsuario(login);
         usuario.setIdadeUsuario(idade);
 
         UsuarioDAO usuarioDAO = new UsuarioDAO();

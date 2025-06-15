@@ -168,9 +168,10 @@ public class TelaBuscaLivro extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProcurarActionPerformed
 
     private void btnConcluidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConcluidoActionPerformed
+        TelaUser telaUser = new TelaUser();
+        telaUser.setVisible(true);
         this.dispose();
-        TelaDetalheLivro telaDetalheLivro  = new  TelaDetalheLivro();
-        telaDetalheLivro.setVisible(true);
+       
     }//GEN-LAST:event_btnConcluidoActionPerformed
 
     /**

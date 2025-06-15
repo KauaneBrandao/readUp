@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UsuarioDAO {
 
@@ -16,17 +18,16 @@ public class UsuarioDAO {
         this.conexao = factory.obtemConexao();
     }
 
-    public void inserirUsuario(String loginUsuario, String senhaUsuario, String nomeUsuario, String telefoneUsuario, String emailUsuario, String privilegioUsuario, int idadeUsuario) {
-        String sql = "INSERT INTO tb_Usuario(login_Usuario, senha_Usuario, nome_Usuario, telefone_Usuario, email_Usuario, privilegio_Usuario, idade_Usuario) VALUES(?, ?, ?, ?, ?, ?, ?)";
+    public void inserirUsuario(String loginUsuario, String senhaUsuario, String telefoneUsuario, String emailUsuario, String privilegioUsuario, int idadeUsuario) {
+        String sql = "INSERT INTO tb_Usuario(login_Usuario, senha_Usuario, telefone_Usuario, email_Usuario, privilegio_Usuario, idade_Usuario) VALUES(?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement ps = conexao.prepareStatement(sql)) {
             ps.setString(1, loginUsuario);
             ps.setString(2, senhaUsuario);
-            ps.setString(3, nomeUsuario);
-            ps.setString(4, telefoneUsuario);
-            ps.setString(5, emailUsuario);
-            ps.setString(6, privilegioUsuario);
-            ps.setInt(7, idadeUsuario);
+            ps.setString(3, telefoneUsuario);
+            ps.setString(4, emailUsuario);
+            ps.setString(5, privilegioUsuario);
+            ps.setInt(6, idadeUsuario);
 
             ps.execute();
         } catch (SQLException e) {
@@ -47,7 +48,6 @@ public class UsuarioDAO {
                         rs.getInt("id_Usuario"),
                         rs.getString("login_Usuario"),
                         rs.getString("senha_Usuario"),
-                        rs.getString("nome_Usuario"),
                         rs.getString("telefone_Usuario"),
                         rs.getString("email_Usuario"),
                         rs.getString("privilegio_Usuario"),
@@ -73,7 +73,6 @@ public class UsuarioDAO {
                 usuario.setIdUsuario(rs.getInt("id_Usuario"));
                 usuario.setLoginUsuario(rs.getString("login_Usuario"));
                 usuario.setSenhaUsuario(rs.getString("senha_Usuario"));
-                usuario.setNomeUsuario(rs.getString("nome_Usuario"));
                 usuario.setTelefoneUsuario(rs.getString("telefone_Usuario"));
                 usuario.setEmailUsuario(rs.getString("email_Usuario"));
                 usuario.setPrivilegioUsuario(rs.getString("privilegio_Usuario"));
@@ -86,16 +85,15 @@ public class UsuarioDAO {
     }
 
     public boolean atualizarUsuario(Usuario usuario) {
-        String sql = "UPDATE tb_Usuario SET nome_Usuario = ?, telefone_Usuario = ?, email_Usuario = ?, senha_Usuario = ?, privilegio_Usuario = ?, idade_Usuario = ? WHERE login_Usuario = ?";
+        String sql = "UPDATE tb_Usuario SET telefone_Usuario = ?, email_Usuario = ?, senha_Usuario = ?, privilegio_Usuario = ?, idade_Usuario = ? WHERE login_Usuario = ?";
 
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
-            stmt.setString(1, usuario.getNomeUsuario());
-            stmt.setString(2, usuario.getTelefoneUsuario());
-            stmt.setString(3, usuario.getEmailUsuario());
-            stmt.setString(4, usuario.getSenhaUsuario());
-            stmt.setString(5, usuario.getPrivilegioUsuario());
-            stmt.setInt(6, usuario.getIdadeUsuario());
-            stmt.setString(8, usuario.getLoginUsuario());
+            stmt.setString(1, usuario.getTelefoneUsuario());
+            stmt.setString(2, usuario.getEmailUsuario());
+            stmt.setString(3, usuario.getSenhaUsuario());
+            stmt.setString(4, usuario.getPrivilegioUsuario());
+            stmt.setInt(5, usuario.getIdadeUsuario());
+            stmt.setString(6, usuario.getLoginUsuario());
 
             int rowsUpdated = stmt.executeUpdate();
             if (rowsUpdated > 0) {
@@ -110,5 +108,32 @@ public class UsuarioDAO {
         }
         return false;
     }
-    
+   
+    public List<Usuario> listarUsuarios() {
+        List<Usuario> usuarios = new ArrayList<>();
+        String sql = "SELECT * FROM tb_Usuario";
+
+        try (PreparedStatement ps = conexao.prepareStatement(sql)) {
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Usuario usuario = new Usuario();
+                usuario.setIdUsuario(rs.getInt("id_Usuario"));
+                usuario.setLoginUsuario(rs.getString("login_Usuario"));
+                usuario.setSenhaUsuario(rs.getString("senha_Usuario"));
+                usuario.setTelefoneUsuario(rs.getString("telefone_Usuario"));
+                usuario.setEmailUsuario(rs.getString("email_Usuario"));
+                usuario.setPrivilegioUsuario(rs.getString("privilegio_Usuario"));
+                usuario.setIdadeUsuario(rs.getInt("idade_Usuario"));
+
+                usuarios.add(usuario);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return usuarios;
+    }
+
 }
