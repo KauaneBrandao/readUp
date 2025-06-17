@@ -1,5 +1,9 @@
 package Telas;
 
+import DAO.LivroDAO;
+import Model.Livro;
+import java.util.List;
+
 public class TelaUser extends javax.swing.JFrame {
 
     /**
@@ -7,6 +11,8 @@ public class TelaUser extends javax.swing.JFrame {
      */
     public TelaUser() {
         initComponents();
+        TextAreaLivros.setContentType("text/html");
+        carregarLivros();
     }
 
     /**
@@ -27,12 +33,9 @@ public class TelaUser extends javax.swing.JFrame {
         btnPerfil = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TextAreaLivros = new javax.swing.JEditorPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,22 +120,9 @@ public class TelaUser extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/2.png"))); // NOI18N
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jTextField2.setText("Livros Disponiveis");
 
-        jTextField2.setText("Livro  1");
-
-        jTextField3.setText("Livro 2");
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
-
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        jScrollPane1.setViewportView(TextAreaLivros);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -141,10 +131,8 @@ public class TelaUser extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(18, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField2)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE)
-                    .addComponent(jTextField3)
-                    .addComponent(jScrollPane2))
+                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
                 .addGap(16, 16, 16))
         );
         jPanel3Layout.setVerticalGroup(
@@ -153,12 +141,8 @@ public class TelaUser extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -218,16 +202,35 @@ public class TelaUser extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_ProcurarObrasButtonActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
-
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
          this.dispose();
          TelaPerfil7 telaLogin = new TelaPerfil7();
          telaLogin.setVisible(true);
     }//GEN-LAST:event_btnPerfilActionPerformed
-
+    private void carregarLivros() {
+        try {
+            LivroDAO livroDAO = new LivroDAO();
+            List<Livro> livros = livroDAO.listarLivros();
+            StringBuilder sb = new StringBuilder();
+            sb.append("<html><body>");
+            for (Livro livro : livros) {
+                sb.append("<p style='font-family:Arial, sans-serif; font-size:12px;'>")
+                        .append("<span style='color:#1a237e; font-weight:bold; font-size:10px;'>📘 Título:</span> ")
+                        .append("<span style='color:#000000; font-style:italic;'>")
+                        .append(livro.getNomeLivro()).append("</span><br>")
+                        .append("<span style='color:#ff8f49; font-weight:bold; font-size:10px;'>✍️ Autor:</span> ")
+                        .append("<span style='color:#000000;'>")
+                        .append(livro.getAutorLivro()).append("</span><br><br>")
+                        .append("<hr style='border:1px dashed #ccc;'>")
+                        .append("</p>");
+            }
+            sb.append("</body></html>");
+            TextAreaLivros.setText(sb.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, "Erro ao carregar livros: " + e.getMessage());
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -267,6 +270,7 @@ public class TelaUser extends javax.swing.JFrame {
     private javax.swing.JButton CadastrarObrasButton;
     private javax.swing.JButton ProcurarObrasButton;
     private javax.swing.JButton SairButton;
+    private javax.swing.JEditorPane TextAreaLivros;
     private javax.swing.JButton btnPerfil;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -274,10 +278,6 @@ public class TelaUser extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 }
