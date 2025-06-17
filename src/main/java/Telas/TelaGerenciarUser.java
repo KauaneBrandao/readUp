@@ -40,8 +40,6 @@ public class TelaGerenciarUser extends javax.swing.JFrame {
         button1 = new java.awt.Button();
         jLabel5 = new javax.swing.JLabel();
         textField4 = new java.awt.TextField();
-        jLabel6 = new javax.swing.JLabel();
-        textField5 = new java.awt.TextField();
         jLabel7 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
@@ -92,10 +90,6 @@ public class TelaGerenciarUser extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Email:");
-
-        jLabel6.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Idade:");
 
         jLabel7.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -153,15 +147,12 @@ public class TelaGerenciarUser extends javax.swing.JFrame {
                                 .addGap(48, 48, 48)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(textField6, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addComponent(textField2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(20, 20, 20)
-                                            .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jLabel6)
-                                        .addComponent(textField5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel8))))
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(textField2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(20, 20, 20)
+                                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel8)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(125, 125, 125))))
@@ -197,14 +188,10 @@ public class TelaGerenciarUser extends javax.swing.JFrame {
                             .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(19, 19, 19)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel6)))
+                        .addComponent(jLabel4))
                     .addComponent(textField2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textField5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textField3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(textField3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -254,19 +241,15 @@ public class TelaGerenciarUser extends javax.swing.JFrame {
     }//GEN-LAST:event_textField1ActionPerformed
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
-        String login = textField2.getText();
-
-
+        String login = textField1.getText();
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         Usuario usuario = usuarioDAO.pesquisarUsuario(login);
-
         if (usuario != null) {
-            textField1.setText(usuario.getLoginUsuario());           // Nome
-            textField3.setText(usuario.getTelefoneUsuario());       // Telefone
-            textField4.setText(usuario.getEmailUsuario());      // Email
-            textField6.setText(usuario.getSenhaUsuario());  // Senha
-            jComboBox1.setSelectedItem(usuario.getPrivilegioUsuario()); // Privilegio
-            textField5.setText(String.valueOf(usuario.getIdadeUsuario())); // Idade
+            textField1.setText(usuario.getLoginUsuario());
+            textField3.setText(usuario.getTelefoneUsuario());
+            textField4.setText(usuario.getEmailUsuario());
+            textField6.setText(usuario.getSenhaUsuario());
+            jComboBox1.setSelectedItem(usuario.getPrivilegioUsuario());
         } else {
             JOptionPane.showMessageDialog(null, "Usuário não encontrado.");
         }
@@ -274,21 +257,29 @@ public class TelaGerenciarUser extends javax.swing.JFrame {
     }//GEN-LAST:event_button1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String nome = textField1.getText();
+        String login = textField1.getText();
         String telefone = textField3.getText();
         String email = textField4.getText();
         String senha = new String(textField6.getText());
         String privilegio = (String) jComboBox1.getSelectedItem();
-        String login = textField2.getText();
-        int idade = Integer.parseInt(textField5.getText()); // Campo de idade
+       
+       
+        System.out.println("Nome: " + login);
+        System.out.println("Telefone: " + telefone);
+        System.out.println("Email: " + email);
+        System.out.println("Senha: " + senha);
+        
+        System.out.println("Privilegio: " + privilegio);
+        System.out.println("Login: " + login); // Exibe o login no console
 
         Usuario usuario = new Usuario();
-        usuario.setLoginUsuario(nome);
+        usuario.setLoginUsuario(login);
         usuario.setTelefoneUsuario(telefone);
         usuario.setEmailUsuario(email);
         usuario.setSenhaUsuario(senha);
         usuario.setPrivilegioUsuario(privilegio);
-        usuario.setIdadeUsuario(idade);
+        
+        
 
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         boolean sucesso = usuarioDAO.atualizarUsuario(usuario);
@@ -352,7 +343,6 @@ public class TelaGerenciarUser extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -362,7 +352,6 @@ public class TelaGerenciarUser extends javax.swing.JFrame {
     private java.awt.TextField textField2;
     private java.awt.TextField textField3;
     private java.awt.TextField textField4;
-    private java.awt.TextField textField5;
     private java.awt.TextField textField6;
     // End of variables declaration//GEN-END:variables
 }

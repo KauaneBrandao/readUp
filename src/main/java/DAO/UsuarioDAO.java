@@ -62,38 +62,38 @@ public class UsuarioDAO {
     }
 
     public Usuario pesquisarUsuario(String login) {
-        String sql = "SELECT * FROM tb_Usuario WHERE login_Usuario = ?";
-        Usuario usuario = null;
+    String sql = "SELECT * FROM tb_Usuario WHERE login_Usuario = ?";
+    Usuario usuario = null;
 
-        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
-            stmt.setString(1, login);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                usuario = new Usuario();
-                usuario.setIdUsuario(rs.getInt("id_Usuario"));
-                usuario.setLoginUsuario(rs.getString("login_Usuario"));
-                usuario.setSenhaUsuario(rs.getString("senha_Usuario"));
-                usuario.setTelefoneUsuario(rs.getString("telefone_Usuario"));
-                usuario.setEmailUsuario(rs.getString("email_Usuario"));
-                usuario.setPrivilegioUsuario(rs.getString("privilegio_Usuario"));
-                usuario.setIdadeUsuario(rs.getInt("idade_Usuario"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+    try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+        stmt.setString(1, login);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            usuario = new Usuario();
+            usuario.setIdUsuario(rs.getInt("id_Usuario"));
+            usuario.setLoginUsuario(rs.getString("login_Usuario"));
+            usuario.setSenhaUsuario(rs.getString("senha_Usuario"));
+            usuario.setTelefoneUsuario(rs.getString("telefone_Usuario"));
+            usuario.setEmailUsuario(rs.getString("email_Usuario"));
+            usuario.setPrivilegioUsuario(rs.getString("privilegio_Usuario"));
+            usuario.setIdadeUsuario(rs.getInt("idade_Usuario"));
         }
-        return usuario;
+    } catch (SQLException e) {
+        System.err.println("Erro ao buscar usuário: " + e.getMessage());
     }
 
+    return usuario;
+}
+
     public boolean atualizarUsuario(Usuario usuario) {
-        String sql = "UPDATE tb_Usuario SET telefone_Usuario = ?, email_Usuario = ?, senha_Usuario = ?, privilegio_Usuario = ?, idade_Usuario = ? WHERE login_Usuario = ?";
+        String sql = "UPDATE tb_Usuario SET telefone_Usuario = ?, email_Usuario = ?, senha_Usuario = ?, privilegio_Usuario = ? WHERE login_Usuario = ?";
 
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             stmt.setString(1, usuario.getTelefoneUsuario());
             stmt.setString(2, usuario.getEmailUsuario());
             stmt.setString(3, usuario.getSenhaUsuario());
             stmt.setString(4, usuario.getPrivilegioUsuario());
-            stmt.setInt(5, usuario.getIdadeUsuario());
-            stmt.setString(6, usuario.getLoginUsuario());
+            stmt.setString(5, usuario.getLoginUsuario());
 
             int rowsUpdated = stmt.executeUpdate();
             if (rowsUpdated > 0) {
@@ -108,6 +108,7 @@ public class UsuarioDAO {
         }
         return false;
     }
+
    
     public List<Usuario> listarUsuarios() {
         List<Usuario> usuarios = new ArrayList<>();
