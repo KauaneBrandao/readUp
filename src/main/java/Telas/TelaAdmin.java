@@ -92,7 +92,7 @@ public class TelaAdmin extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnGerencUser = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -115,13 +115,13 @@ public class TelaAdmin extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/branco.png"))); // NOI18N
 
-        jButton1.setBackground(new java.awt.Color(255, 153, 31));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Gerenciar usuário");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnGerencUser.setBackground(new java.awt.Color(255, 153, 31));
+        btnGerencUser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnGerencUser.setForeground(new java.awt.Color(255, 255, 255));
+        btnGerencUser.setText("Gerenciar usuário");
+        btnGerencUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnGerencUserActionPerformed(evt);
             }
         });
 
@@ -170,7 +170,7 @@ public class TelaAdmin extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel1)
                                         .addGap(31, 31, 31))
-                                    .addComponent(jButton1))
+                                    .addComponent(btnGerencUser))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -184,7 +184,7 @@ public class TelaAdmin extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1)
                 .addGap(70, 70, 70)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnGerencUser, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
@@ -291,11 +291,11 @@ public class TelaAdmin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
  
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //TelaGerenciarUser telaGerenciarUser = new TelaGerenciarUser();
-        //telaGerenciarUser.setVisible(true);
-        //this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnGerencUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerencUserActionPerformed
+        TelaGerenciarUser telaGerenciarUser = new TelaGerenciarUser();
+        telaGerenciarUser.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnGerencUserActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         TelaGerenciarLivros telaGerenciarLivros = new TelaGerenciarLivros();
@@ -352,7 +352,7 @@ public class TelaAdmin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JEditorPane TextAreaLivros;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnGerencUser;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

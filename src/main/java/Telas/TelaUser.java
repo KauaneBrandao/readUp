@@ -214,7 +214,7 @@ public class TelaUser extends javax.swing.JFrame {
     }//GEN-LAST:event_SairButtonActionPerformed
 
     private void ProcurarObrasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProcurarObrasButtonActionPerformed
-        new TelaBuscaLivro().setVisible(true);
+        new TelaBuscaLivAdm().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_ProcurarObrasButtonActionPerformed
 

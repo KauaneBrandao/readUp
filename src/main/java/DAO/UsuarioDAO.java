@@ -155,4 +155,27 @@ public class UsuarioDAO {
         }
         return false;
     }
+    
+    public Usuario pesquisarUsuarioPorId(int id) {
+        String sql = "SELECT * FROM tb_Usuario WHERE id_Usuario = ?";
+        Usuario usuario = null;
+
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                usuario = new Usuario();
+                usuario.setIdUsuario(rs.getInt("id_Usuario"));
+                usuario.setLoginUsuario(rs.getString("login_Usuario"));
+                usuario.setTelefoneUsuario(rs.getString("telefone_Usuario"));
+                usuario.setEmailUsuario(rs.getString("email_Usuario"));
+                usuario.setPrivilegioUsuario(rs.getString("privilegio_Usuario"));
+                usuario.setIdadeUsuario(rs.getInt("idade_Usuario"));
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar usuário por ID: " + e.getMessage());
+        }
+
+        return usuario;
+    }
 }

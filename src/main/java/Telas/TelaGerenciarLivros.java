@@ -122,6 +122,11 @@ public class TelaGerenciarLivros extends javax.swing.JFrame {
         btnExcluir.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnExcluir.setForeground(new java.awt.Color(255, 255, 255));
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -276,6 +281,42 @@ public class TelaGerenciarLivros extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        try {
+            String idTexto = jTextFieldID.getText();
+            System.out.println("ID digitado: " + idTexto);
+
+            int id = Integer.parseInt(idTexto);
+
+            int confirmacao = JOptionPane.showConfirmDialog(null,
+                    "Tem certeza que deseja excluir o livro com ID " + id + "?",
+                    "Confirmação",
+                    JOptionPane.YES_NO_OPTION);
+
+            if (confirmacao == JOptionPane.YES_OPTION) {
+                LivroDAO livroDAO = new LivroDAO();
+                boolean sucesso = livroDAO.deletarLivro(id);
+
+                if (sucesso) {
+                    JOptionPane.showMessageDialog(null, "Livro excluído com sucesso.");
+                    limparCampos();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Livro não encontrado.");
+                }
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "ID inválido. Digite um número.");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
+    private void limparCampos() {
+        jTextFieldID.setText("");
+        jTextFieldNome.setText("");
+        jFormattedTextFieldData.setText("");
+        jTextAreaDesc.setText("");
+        jTextFieldAutor.setText("");
+        jTextFieldResponsa.setText("");
+    }
     /**
      * @param args the command line arguments
      */

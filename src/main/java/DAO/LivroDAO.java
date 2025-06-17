@@ -232,6 +232,23 @@ public class LivroDAO {
 
         return livros;
     }
+ 
+    public boolean deletarLivro(int id){
+        String sql = "DELETE FROM tb_livro WHERE id_Livro = ?";
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            int linhasAfetadas = stmt.executeUpdate();
 
-
+            if (linhasAfetadas > 0) {
+                System.out.println("Livro deletado com sucesso!");
+                return true;
+            } else {
+                System.err.println("Nenhum livro encontrado com o id: " + id);
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao deletar livro: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
