@@ -292,9 +292,9 @@ public class TelaAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
  
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        TelaGerenciarUser telaGerenciarUser = new TelaGerenciarUser();
-        telaGerenciarUser.setVisible(true);
-        this.dispose();
+        //TelaGerenciarUser telaGerenciarUser = new TelaGerenciarUser();
+        //telaGerenciarUser.setVisible(true);
+        //this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
