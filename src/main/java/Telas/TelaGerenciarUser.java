@@ -39,9 +39,13 @@ public class TelaGerenciarUser extends javax.swing.JFrame {
         textFieldTelefone = new java.awt.TextField();
         buscar = new java.awt.Button();
         jLabel5 = new javax.swing.JLabel();
+<<<<<<< HEAD
         textFieldEmail = new java.awt.TextField();
         jLabel6 = new javax.swing.JLabel();
         textFieldIdade = new java.awt.TextField();
+=======
+        textField4 = new java.awt.TextField();
+>>>>>>> 9daf01be56d835f16772bb9ae6d1020b052c74f4
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         textFieldSenha = new java.awt.TextField();
@@ -93,10 +97,6 @@ public class TelaGerenciarUser extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Email:");
 
-        jLabel6.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Idade:");
-
         jLabel7.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Privilégios:");
@@ -131,6 +131,41 @@ public class TelaGerenciarUser extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
+=======
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textField3, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jComboBox1, 0, 315, Short.MAX_VALUE)
+                                        .addComponent(textField4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(48, 48, 48)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textField6, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(textField2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(20, 20, 20)
+                                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel8)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(125, 125, 125))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(79, Short.MAX_VALUE))
+>>>>>>> 9daf01be56d835f16772bb9ae6d1020b052c74f4
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -193,6 +228,7 @@ public class TelaGerenciarUser extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(textFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(19, 19, 19)
+<<<<<<< HEAD
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(jLabel6)))
@@ -204,6 +240,13 @@ public class TelaGerenciarUser extends javax.swing.JFrame {
                     .addComponent(textFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textFieldIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
+=======
+                        .addComponent(jLabel4))
+                    .addComponent(textField2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(textField3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+>>>>>>> 9daf01be56d835f16772bb9ae6d1020b052c74f4
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jLabel5))
@@ -251,6 +294,7 @@ public class TelaGerenciarUser extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldNomeActionPerformed
 
+<<<<<<< HEAD
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         String textoId = textFieldID.getText();
 
@@ -271,10 +315,66 @@ public class TelaGerenciarUser extends javax.swing.JFrame {
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Por favor, insira um ID válido (número inteiro).");
+=======
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+        String login = textField1.getText();
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        Usuario usuario = usuarioDAO.pesquisarUsuario(login);
+        if (usuario != null) {
+            textField1.setText(usuario.getLoginUsuario());
+            textField3.setText(usuario.getTelefoneUsuario());
+            textField4.setText(usuario.getEmailUsuario());
+            textField6.setText(usuario.getSenhaUsuario());
+            jComboBox1.setSelectedItem(usuario.getPrivilegioUsuario());
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuário não encontrado.");
+>>>>>>> 9daf01be56d835f16772bb9ae6d1020b052c74f4
         }
     }//GEN-LAST:event_buscarActionPerformed
 
+<<<<<<< HEAD
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+=======
+    }//GEN-LAST:event_button1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String login = textField1.getText();
+        String telefone = textField3.getText();
+        String email = textField4.getText();
+        String senha = new String(textField6.getText());
+        String privilegio = (String) jComboBox1.getSelectedItem();
+       
+       
+        System.out.println("Nome: " + login);
+        System.out.println("Telefone: " + telefone);
+        System.out.println("Email: " + email);
+        System.out.println("Senha: " + senha);
+        
+        System.out.println("Privilegio: " + privilegio);
+        System.out.println("Login: " + login); // Exibe o login no console
+
+        Usuario usuario = new Usuario();
+        usuario.setLoginUsuario(login);
+        usuario.setTelefoneUsuario(telefone);
+        usuario.setEmailUsuario(email);
+        usuario.setSenhaUsuario(senha);
+        usuario.setPrivilegioUsuario(privilegio);
+        
+        
+
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        boolean sucesso = usuarioDAO.atualizarUsuario(usuario);
+
+        if (sucesso) {
+            JOptionPane.showMessageDialog(this, "Alteração feita com sucesso.");
+        } else {
+            JOptionPane.showMessageDialog(this, "Erro ao salvar as alterações.");
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+>>>>>>> 9daf01be56d835f16772bb9ae6d1020b052c74f4
         TelaAdmin telaAdmin = new TelaAdmin();
         telaAdmin.setVisible(true);
         this.dispose();
@@ -359,12 +459,12 @@ public class TelaGerenciarUser extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+<<<<<<< HEAD
     private javax.swing.JTextField privilegio;
     private java.awt.TextField textFieldEmail;
     private java.awt.TextField textFieldID;
@@ -372,5 +472,12 @@ public class TelaGerenciarUser extends javax.swing.JFrame {
     private java.awt.TextField textFieldNome;
     private java.awt.TextField textFieldSenha;
     private java.awt.TextField textFieldTelefone;
+=======
+    private java.awt.TextField textField1;
+    private java.awt.TextField textField2;
+    private java.awt.TextField textField3;
+    private java.awt.TextField textField4;
+    private java.awt.TextField textField6;
+>>>>>>> 9daf01be56d835f16772bb9ae6d1020b052c74f4
     // End of variables declaration//GEN-END:variables
 }
