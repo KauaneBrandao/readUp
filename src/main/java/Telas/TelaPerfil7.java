@@ -5,18 +5,36 @@
 package Telas;
 import DAO.UsuarioDAO;
 import Model.Usuario;
+import javax.swing.JOptionPane;
 /**
  *
  * @author kauan
  */
 public class TelaPerfil7 extends javax.swing.JFrame {
-
+    private Usuario usuarioAtual;
     /**
      * Creates new form TelaPerfil7
      */
     public TelaPerfil7() {
         initComponents();
        
+    }
+    public TelaPerfil7(String loginUsuario) {
+        initComponents();
+        carregarDadosUsuario(loginUsuario);
+    }
+
+    public void carregarDadosUsuario(String login) {
+        UsuarioDAO dao = new UsuarioDAO();
+        usuarioAtual = dao.pesquisarUsuario(login);
+
+        if (usuarioAtual != null) {
+            jTextFieldNome.setText(usuarioAtual.getLoginUsuario());
+            jTextFieldEmail.setText(usuarioAtual.getEmailUsuario());
+            jFormattedTextField1.setText(usuarioAtual.getTelefoneUsuario());
+            jTextField1.setText(usuarioAtual.getSenhaUsuario());
+            labelNomeUsuario.setText("Olá, " + usuarioAtual.getLoginUsuario() + "!");
+        }
     }
 
     /**
@@ -216,7 +234,7 @@ public class TelaPerfil7 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+  
     private void jTextFieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNomeActionPerformed
@@ -232,7 +250,22 @@ public class TelaPerfil7 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnConcluidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConcluidoActionPerformed
-    
+        if (usuarioAtual != null) {
+            // Atualizar APENAS os campos editáveis
+            usuarioAtual.setEmailUsuario(jTextFieldEmail.getText());
+            usuarioAtual.setTelefoneUsuario(jFormattedTextField1.getText());
+            usuarioAtual.setSenhaUsuario(jTextField1.getText());
+
+            // NÃO alterar: privilegio e idade (manter os valores originais)
+            UsuarioDAO dao = new UsuarioDAO();
+            boolean sucesso = dao.atualizarUsuario(usuarioAtual);
+
+            if (sucesso) {
+                JOptionPane.showMessageDialog(this, "Dados atualizados com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao atualizar dados!");
+            }
+        }
     }//GEN-LAST:event_btnConcluidoActionPerformed
 
     /**

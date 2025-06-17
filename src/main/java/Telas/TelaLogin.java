@@ -152,14 +152,10 @@ public class TelaLogin extends javax.swing.JFrame {
                 TelaAdmin telaProjetoADM = new TelaAdmin();
                 telaProjetoADM.setVisible(true);
             } else if (user.getPrivilegioUsuario().equals("User")) {
-                TelaUser telaProjeto = new TelaUser();
+                TelaUser telaProjeto = new TelaUser(user.getLoginUsuario()); // ✅ Passa o login
                 telaProjeto.setVisible(true);
             }
-            this.dispose(); // Fecha a tela de login
-        } else if (user == null) {
-            JOptionPane.showMessageDialog(this, "Login ou senha incorretos", "Erro", JOptionPane.ERROR_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(this, "Login ou senha incorretos", "Erro", JOptionPane.ERROR_MESSAGE);
+            this.dispose();
         }
     }//GEN-LAST:event_btnLoginActionPerformed
     // TODO add your handling code here:

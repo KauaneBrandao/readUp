@@ -14,7 +14,14 @@ public class TelaUser extends javax.swing.JFrame {
         TextAreaLivros.setContentType("text/html");
         carregarLivros();
     }
+    private String loginUsuarioLogado;
 
+    public TelaUser(String loginUsuario) {
+        initComponents();
+        this.loginUsuarioLogado = loginUsuario;
+        TextAreaLivros.setContentType("text/html");
+        carregarLivros();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -204,8 +211,8 @@ public class TelaUser extends javax.swing.JFrame {
 
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
          this.dispose();
-         TelaPerfil7 telaLogin = new TelaPerfil7();
-         telaLogin.setVisible(true);
+         TelaPerfil7 telaPerfil = new TelaPerfil7(loginUsuarioLogado);
+         telaPerfil.setVisible(true);
     }//GEN-LAST:event_btnPerfilActionPerformed
     private void carregarLivros() {
         try {
