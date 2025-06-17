@@ -60,14 +60,21 @@ public class UsuarioDAO {
 
         return null;
     }
+    
 
-    public Usuario pesquisarUsuario(String login) {
-        String sql = "SELECT * FROM tb_Usuario WHERE login_Usuario = ?";
+    public Usuario pesquisarUsuario(int id) {
+        String sql = "SELECT * FROM tb_Usuario WHERE id_Usuario = ?";
         Usuario usuario = null;
 
-        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
-            stmt.setString(1, login);
+        try {
+            ConnectionFactory connectionFactory = new ConnectionFactory();
+            Connection conexao = connectionFactory.obtemConexao();
+
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            stmt.setInt(1, id); // Corrigido: setInt
+
             ResultSet rs = stmt.executeQuery();
+
             if (rs.next()) {
                 usuario = new Usuario();
                 usuario.setIdUsuario(rs.getInt("id_Usuario"));
@@ -78,29 +85,48 @@ public class UsuarioDAO {
                 usuario.setPrivilegioUsuario(rs.getString("privilegio_Usuario"));
                 usuario.setIdadeUsuario(rs.getInt("idade_Usuario"));
             }
+
+            rs.close();
+            stmt.close();
+            conexao.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return usuario;
     }
 
+
     public boolean atualizarUsuario(Usuario usuario) {
-        String sql = "UPDATE tb_Usuario SET telefone_Usuario = ?, email_Usuario = ?, senha_Usuario = ?, privilegio_Usuario = ?, idade_Usuario = ? WHERE login_Usuario = ?";
+        try {
+            // Testa se o usuário existe
+            String testeSQL = "SELECT COUNT(*) FROM tb_Usuario WHERE login_Usuario = ?";
+            try (PreparedStatement checkStmt = conexao.prepareStatement(testeSQL)) {
+                checkStmt.setString(1, usuario.getLoginUsuario());
+                ResultSet rs = checkStmt.executeQuery();
+                if (rs.next() && rs.getInt(1) == 0) {
+                    System.err.println("Usuário com login '" + usuario.getLoginUsuario() + "' não existe no banco.");
+                    return false;
+                }
+            }
 
-        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
-            stmt.setString(1, usuario.getTelefoneUsuario());
-            stmt.setString(2, usuario.getEmailUsuario());
-            stmt.setString(3, usuario.getSenhaUsuario());
-            stmt.setString(4, usuario.getPrivilegioUsuario());
-            stmt.setInt(5, usuario.getIdadeUsuario());
-            stmt.setString(6, usuario.getLoginUsuario());
+            String sql = "UPDATE tb_Usuario SET telefone_Usuario = ?, email_Usuario = ?, senha_Usuario = ?, privilegio_Usuario = ?, idade_Usuario = ? WHERE login_Usuario = ?";
+            try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+                stmt.setString(1, usuario.getTelefoneUsuario());
+                stmt.setString(2, usuario.getEmailUsuario());
+                stmt.setString(3, usuario.getSenhaUsuario());
+                stmt.setString(4, usuario.getPrivilegioUsuario());
+                stmt.setInt(5, usuario.getIdadeUsuario());
+                stmt.setString(6, usuario.getLoginUsuario());
 
-            int rowsUpdated = stmt.executeUpdate();
-            if (rowsUpdated > 0) {
-                System.out.println("Usuário atualizado com sucesso!");
-                return true;
-            } else {
-                System.err.println("Nenhuma linha foi atualizada. Verifique se o login_Usuario está correto.");
+                int rowsUpdated = stmt.executeUpdate();
+                if (rowsUpdated > 0) {
+                    System.out.println("Usuário atualizado com sucesso!");
+                    return true;
+                } else {
+                    System.err.println("Nenhuma linha foi atualizada. Verifique se o login_Usuario está correto.");
+                }
             }
         } catch (SQLException e) {
             System.err.println("Erro ao atualizar usuário: " + e.getMessage());
@@ -108,6 +134,8 @@ public class UsuarioDAO {
         }
         return false;
     }
+
+
    
     public List<Usuario> listarUsuarios() {
         List<Usuario> usuarios = new ArrayList<>();
@@ -135,5 +163,24 @@ public class UsuarioDAO {
 
         return usuarios;
     }
+    
+    //Delete
+    public boolean deletarUser(int id) {
+        String sql = "DELETE FROM tb_Usuario WHERE id_Usuario = ?";
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            int linhasAfetadas = stmt.executeUpdate();
 
+            if (linhasAfetadas > 0) {
+                System.out.println("Usuário deletado com sucesso!");
+                return true;
+            } else {
+                System.err.println("Nenhum usuário encontrado com o id: " + id);
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao deletar usuário: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

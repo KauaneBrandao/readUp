@@ -67,7 +67,7 @@
                   <Component id="jLabel2" min="-2" pref="65" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="20" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -83,19 +83,20 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="SairButton" min="-2" pref="146" max="-2" attributes="0"/>
-                          <Component id="ProcurarObrasButton" min="-2" pref="146" max="-2" attributes="0"/>
-                          <Component id="CadastrarObrasButton" min="-2" pref="146" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="btnPerfil" max="32767" attributes="0"/>
+                          <Component id="SairButton" alignment="0" pref="146" max="32767" attributes="0"/>
+                          <Component id="ProcurarObrasButton" alignment="0" pref="146" max="32767" attributes="0"/>
+                          <Component id="CadastrarObrasButton" alignment="0" pref="146" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="22" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -108,7 +109,9 @@
                       <Component id="ProcurarObrasButton" min="-2" pref="45" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="CadastrarObrasButton" min="-2" pref="44" max="-2" attributes="0"/>
-                      <EmptySpace pref="190" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnPerfil" min="-2" pref="43" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="SairButton" min="-2" pref="46" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
                   </Group>
@@ -172,6 +175,23 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SairButtonActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnPerfil">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="33" green="99" red="ff" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Perfil"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPerfilActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

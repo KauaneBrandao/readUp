@@ -94,25 +94,25 @@ public class TelaBuscaLivro extends javax.swing.JFrame {
         fundoLayout.setHorizontalGroup(
             fundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fundoLayout.createSequentialGroup()
-                .addGroup(fundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, fundoLayout.createSequentialGroup()
+                .addGroup(fundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(fundoLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(218, 218, 218)
                         .addComponent(jLabel1))
                     .addGroup(fundoLayout.createSequentialGroup()
-                        .addGap(109, 109, 109)
+                        .addGap(92, 92, 92)
                         .addGroup(fundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(fundoLayout.createSequentialGroup()
                                 .addComponent(txtBuscarLiv, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnProcurar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(50, Short.MAX_VALUE))
+                                .addComponent(btnProcurar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(67, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fundoLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnConcluido, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(310, 310, 310))
+                .addGap(327, 327, 327))
         );
         fundoLayout.setVerticalGroup(
             fundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,7 +120,7 @@ public class TelaBuscaLivro extends javax.swing.JFrame {
                 .addGroup(fundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(fundoLayout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 12, Short.MAX_VALUE))
+                        .addGap(0, 18, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fundoLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel1)))
@@ -130,9 +130,9 @@ public class TelaBuscaLivro extends javax.swing.JFrame {
                     .addComponent(btnProcurar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnConcluido, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49))
+                .addGap(55, 55, 55))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -161,14 +161,14 @@ public class TelaBuscaLivro extends javax.swing.JFrame {
     
     private LivroDAO LivroDAO;
     private void btnProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarActionPerformed
-         String nomeParcial = txtBuscarLiv.getText();
+        String nomeParcial = txtBuscarLiv.getText();
         List<Livro> livros = LivroDAO.buscarLivrosPorNome(nomeParcial);
         ArrayList<Livro> livrosArrayList = new ArrayList<>(livros);
         preencherTabela(livrosArrayList);
     }//GEN-LAST:event_btnProcurarActionPerformed
 
     private void btnConcluidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConcluidoActionPerformed
-        TelaUser telaUser = new TelaUser();
+        TelaAdmin telaUser = new TelaAdmin();
         telaUser.setVisible(true);
         this.dispose();
        

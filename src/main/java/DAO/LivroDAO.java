@@ -30,7 +30,7 @@ public class LivroDAO {
         stmt.setString(2, livro.getAutorLivro());
         stmt.setString(3, livro.getDsecLivro());
         stmt.setInt(4, livro.getIdGeneroLiv());
-        
+  
         // Garantir que a data seja inserida
         Date dataCriacao = livro.getDataCriacaoLivro();
         if (dataCriacao == null) {
@@ -103,10 +103,26 @@ public class LivroDAO {
             e.printStackTrace();
         }
     }
-
+    public List<Livro> buscarLivrosPorNomes(String nomeParcial) {
+        List<Livro> livros = new ArrayList<>();
+        String sql = "SELECT autor_Livro, nome_Livro FROM tb_livro WHERE nome_Livro LIKE ?";
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            stmt.setString(1, "%" + nomeParcial + "%");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Livro livro = new Livro();
+                livro.setAutorLivro(rs.getString("autor_Livro"));
+                livro.setNomeLivro(rs.getString("nome_Livro"));
+                livros.add(livro);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return livros;
+    }
     public List<Livro> buscarLivrosPorNome(String nomeParcial) {
         List<Livro> livros = new ArrayList<>();
-        String sql = "SELECT id_Livro, nome_Livro FROM tb_livro WHERE nome_Livro LIKE ?";
+        String sql = "SELECT id_Livro, nome_Livro,autor_Livro FROM tb_livro WHERE nome_Livro LIKE ?";
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             stmt.setString(1, "%" + nomeParcial + "%");
             ResultSet rs = stmt.executeQuery();
@@ -114,6 +130,30 @@ public class LivroDAO {
                 Livro livro = new Livro();
                 livro.setIdLivro(rs.getInt("id_Livro"));
                 livro.setNomeLivro(rs.getString("nome_Livro"));
+                livro.setAutorLivro(rs.getString("autor_Livro"));
+                livros.add(livro);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return livros;
+    }
+    public List<Livro> buscarLivros(String nomeParcial) {
+        List<Livro> livros = new ArrayList<>();
+        String sql = "SELECT id_Livro, nome_Livro, autor_Livro, dsec_Livro, id_GeneroLiv, dataCriacao_Livro, curtida, imagemCapa FROM tb_livro WHERE nome_Livro LIKE ?";
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            stmt.setString(1, "%" + nomeParcial + "%");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Livro livro = new Livro();
+                livro.setIdLivro(rs.getInt("id_Livro"));
+                livro.setNomeLivro(rs.getString("nome_Livro"));
+                livro.setAutorLivro(rs.getString("autor_Livro"));
+                livro.setDsecLivro(rs.getString("dsec_Livro"));
+                livro.setIdGeneroLiv(rs.getInt("id_GeneroLiv"));
+                livro.setDataCriacaoLivro(rs.getDate("dataCriacao_Livro")); // <--- aqui agora vai funcionar!
+                livro.setCurtida(rs.getInt("curtida"));
+                livro.setImagemCapa(rs.getString("imagemCapa"));
                 livros.add(livro);
             }
         } catch (SQLException e) {

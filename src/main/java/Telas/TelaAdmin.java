@@ -62,7 +62,7 @@ public class TelaAdmin extends javax.swing.JFrame {
             sb.append("<html><body>");
             for (Usuario usuario : usuarios) {
                 sb.append("<p style='font-family:Verdana, sans-serif; font-size:12px;'>")
-                   .append("<span style='color:#0d47a1; font-weight:bold; font-size:9px;'>👤 Login:</span> ")
+                   .append("<span style='color:#0d47a1; font-weight:bold; font-size:9px;'>👤 User:</span> ")
                    .append("<span style='color:#000000;'>").append(usuario.getLoginUsuario()).append("</span><br>")
                    .append("<span style='color:#00695c; font-weight:bold; font-size:9px;'>📧 Email:</span> ")
                    .append("<span style='color:#000000;'>").append(usuario.getEmailUsuario()).append("</span><br><br>")
